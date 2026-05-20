@@ -129,7 +129,7 @@ export default function AboutUs() {
                 <span className="text-amber-900 font-extrabold text-2xl lg:text-4xl">Chairman Mr. Jaihind Mahadev Salunkhe</span>
               </h2>
 
-              <div className="space-y-6 text-[#4A3F2C] text-base lg:text-lg leading-relaxed font-serif">
+              <div className="space-y-6 text-[#4A3F2C] text-base lg:text-lg leading-relaxed font-serif text-justify">
                 <p>
                   Our Chairman, Mr. Jaihind Mahadev Salunkhe, an excellent entrepreneur and philanthropist, started his journey in 1969 in Kochi, Kerala with a jewellery shop in the name of SHALIMAR along with his own brother Mr. Prathap Rao.
                 </p>
@@ -219,7 +219,7 @@ export default function AboutUs() {
 
               {/* Bio Container */}
               <motion.div 
-                className="lg:col-span-7 space-y-6 text-[#4A3F2C] text-base lg:text-lg leading-relaxed font-serif"
+                className="lg:col-span-7 space-y-6 text-[#4A3F2C] text-base lg:text-lg leading-relaxed font-serif text-justify"
                 initial={{ opacity: 0, x: 40 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
@@ -298,7 +298,7 @@ export default function AboutUs() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start pt-24 border-t border-amber-200/20">
               {/* Bio Container (Left 7 cols) */}
               <motion.div 
-                className="lg:col-span-7 order-2 lg:order-1 space-y-6 text-[#4A3F2C] text-base lg:text-lg leading-relaxed font-serif"
+                className="lg:col-span-7 order-2 lg:order-1 space-y-6 text-[#4A3F2C] text-base lg:text-lg leading-relaxed font-serif text-justify"
                 initial={{ opacity: 0, x: -40 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
@@ -373,15 +373,22 @@ export default function AboutUs() {
       </section>
 
       {/* 4. DETAILED HERITAGE TIMELINE */}
-      <section className="w-full py-28 px-6 bg-gradient-to-b from-[#F5ECD7] to-[#FAF6EE] relative border-t border-amber-200/20 overflow-hidden">
+      <section className="w-full py-28 px-6 relative border-t border-amber-200/20 overflow-hidden">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-fixed bg-no-repeat"
+          style={{ backgroundImage: `url(${aboutHeroBg})` }}
+        />
+        {/* Dark overlay for readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1A1610]/92 via-[#261E14]/88 to-[#1A1610]/95" />
         {/* Decorative elements */}
-        <div className="absolute top-1/3 -left-20 w-[400px] h-[400px] rounded-full bg-amber-400/5 blur-[100px] pointer-events-none" />
-        <div className="absolute bottom-1/3 -right-20 w-[400px] h-[400px] rounded-full bg-amber-500/5 blur-[100px] pointer-events-none" />
+        <div className="absolute top-1/3 -left-20 w-[400px] h-[400px] rounded-full bg-amber-400/8 blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-1/3 -right-20 w-[400px] h-[400px] rounded-full bg-amber-500/8 blur-[100px] pointer-events-none" />
 
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="text-center mb-24">
             <span className="text-amber-600 font-bold uppercase tracking-widest text-xs">Chronicle of Trust</span>
-            <h2 className="text-3xl lg:text-5xl font-black text-amber-955 uppercase tracking-wide mt-2">
+            <h2 className="text-3xl lg:text-5xl font-black text-white uppercase tracking-wide mt-2">
               Timeline of Milestones
             </h2>
             <div className="w-24 h-1.5 bg-amber-500 rounded-full mt-4 mx-auto" />
@@ -390,7 +397,7 @@ export default function AboutUs() {
           {/* Timeline track wrapper */}
           <div className="relative">
             {/* Center line (Desktop) or Left Line (Mobile) */}
-            <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-1 md:-translate-x-1/2 bg-gradient-to-b from-amber-300 via-amber-500 to-amber-600 shadow-[0_0_12px_rgba(245,158,11,0.3)] rounded-full"></div>
+            <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-1 md:-translate-x-1/2 bg-gradient-to-b from-amber-300 via-amber-500 to-amber-600 shadow-[0_0_20px_rgba(245,158,11,0.5)] rounded-full"></div>
 
             <div className="space-y-20 relative">
               
@@ -629,6 +636,56 @@ export default function AboutUs() {
         </div>
       </section>
 
+    <section className="w-full py-28 px-6 bg-[#FAF6EE] border-t border-amber-200/20 overflow-hidden">
+  <div className="max-w-7xl mx-auto">
+    <div className="text-center mb-20">
+      <span className="text-amber-600 font-bold uppercase tracking-widest text-xs">Our Group</span>
+      <h2 className="text-3xl lg:text-5xl font-black text-amber-955 uppercase tracking-wide mt-2">About Our Companies</h2>
+      <div className="w-24 h-1.5 bg-amber-500 rounded-full mt-4 mx-auto" />
     </div>
+
+    <motion.div
+      className="grid grid-cols-1 md:grid-cols-3 gap-8"
+      variants={staggerContainer}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+    >
+      {/* SJS GOLD PVT LTD */}
+      <motion.div
+        className="bg-white/50 backdrop-blur-sm border border-amber-500/20 rounded-3xl p-6 hover:-translate-y-2 hover:shadow-xl transition-all duration-300"
+        variants={fadeInUp}
+      >
+        <h3 className="text-xl font-bold text-amber-955 uppercase mb-3">SJS GOLD PVT LTD</h3>
+        <p className="text-sm text-[#5A4F3D] leading-relaxed">
+          Private limited company established in 2007 engaged in trading, refining, hallmarking and assaying of gold bullion across South India. Head office in Thrissur with branches in Mumbai, Kochi, Kozhikode and Alappuzha. Processes exceed global standards for precision metal assessment.
+        </p>
+      </motion.div>
+
+      {/* SJS Precious Metals LLP */}
+      <motion.div
+        className="bg-white/50 backdrop-blur-sm border border-amber-500/20 rounded-3xl p-6 hover:-translate-y-2 hover:shadow-xl transition-all duration-300"
+        variants={fadeInUp}
+      >
+        <h3 className="text-xl font-bold text-amber-955 uppercase mb-3">SJS Precious Metals LLP</h3>
+        <p className="text-sm text-[#5A4F3D] leading-relaxed">
+          Over 75 years of experience, specializing in world‑class gold processing. State‑of‑the‑art Aqua Regia plant refines up to 100 KG per day, delivering purity levels of 999+ with unmatched precision and reliability.
+        </p>
+      </motion.div>
+
+      {/* BOMBAY ASSAY COMPANY (BAC) */}
+      <motion.div
+        className="bg-white/50 backdrop-blur-sm border border-amber-500/20 rounded-3xl p-6 hover:-translate-y-2 hover:shadow-xl transition-all duration-300"
+        variants={fadeInUp}
+      >
+        <h3 className="text-xl font-bold text-amber-955 uppercase mb-3">BOMBAY ASSAY COMPANY (BAC)</h3>
+        <p className="text-sm text-[#5A4F3D] leading-relaxed">
+          Renowned assaying & hallmarking brand with facilities in Mumbai, Surat, Kolkata, Hosur, Udupi and Delhi — offering unmatched precision and setting new benchmarks in precious‑metal testing.
+        </p>
+      </motion.div>
+    </motion.div>
+  </div>
+</section>
+</div>
   );
 }

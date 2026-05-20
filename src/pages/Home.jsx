@@ -106,14 +106,7 @@ export default function Home() {
             The SJS Group has grown into a diverse and respected name in the gold industry, built on a solid foundation of trust, quality, and lasting customer relationships.
           </p>
 
-          <div className="flex justify-center mb-16">
-            <Link 
-              to="/about"
-              className="bg-amber-600 hover:bg-amber-700 text-white font-bold px-8 py-3 rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105"
-            >
-              Explore Our Full Story &amp; Leadership
-            </Link>
-          </div>
+
 
           {/* 2x2 Grid of Milestones */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl w-full mx-auto">
@@ -193,6 +186,56 @@ export default function Home() {
               </div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* STRATEGIC VISION QUOTE */}
+      <section className="w-full relative overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${aboutBg})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-orange-600/95 via-orange-500/90 to-orange-600/95" />
+        
+        <div className="relative z-10 max-w-7xl mx-auto px-6 py-16 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="flex-1">
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-amber-100 text-xs font-bold uppercase tracking-widest mb-3"
+            >
+              Our Strategic Vision
+            </motion.p>
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-3xl lg:text-4xl font-black text-white italic mb-4"
+            >
+              "Spread Our Wings"
+            </motion.h2>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-white/90 text-base lg:text-lg leading-relaxed max-w-2xl"
+            >
+              We are embarking on a strategic expansion across various regions of India, extending our footprint while upholding our commitment to quality, trust, and excellence.
+            </motion.p>
+          </div>
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="bg-amber-500/60 backdrop-blur-sm border border-white/20 rounded-2xl px-10 py-5 shadow-lg"
+          >
+            <span className="text-white text-2xl lg:text-3xl font-black uppercase tracking-wider">SJS Gold</span>
+          </motion.div>
         </div>
       </section>
 
