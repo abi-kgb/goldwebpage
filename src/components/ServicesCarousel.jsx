@@ -1,5 +1,9 @@
+// ServicesCarousel.jsx
+
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import GoldBullion from "./GoldBullion";
+import { useNavigate } from "react-router-dom";
 
 // Import images
 import bullImg from "../assets/1bull.jpg";
@@ -29,11 +33,11 @@ const services = [
     tagline: "Advanced Smelting & Chemical Purity",
     image: refImg,
     description:
-      "Transform scrap gold and jeweler's sweeps into fine precious metals. Utilizing the state-of-the-art Aqua Regia chemical refining process, we ensure the maximum recovery yield with absolute purity.",
+      "At our gold refinery we turn raw material into high-grade brilliance — secure handling, trained specialists, and cutting-edge refining technology designed to maximise your returns.",
     highlights: [
-      "Aqua Regia high-yield chemical refining",
-      "Advanced environment-friendly smelting",
-      "Precise recovery audit reports",
+      "Transparent melt & assay procedures",
+      "High-yield recovery with audit reports",
+      "XRF spectrometry & fire assay accuracy",
     ],
   },
   {
@@ -43,7 +47,7 @@ const services = [
     tagline: "Precision Assaying & Non-Destructive Analysis",
     image: testImg,
     description:
-      "Verify the exact caratage and gold content of any metal object. Our laboratories combine advanced X-ray Fluorescence (XRF) spectrometry with classic fire assay methods to deliver certified, fraud-proof results.",
+      "Verify the exact caratage and gold content of any metal object.",
     highlights: [
       "X-Ray Fluorescence (XRF) analysis",
       "Non-destructive instant checking",
@@ -57,7 +61,7 @@ const services = [
     tagline: "BIS-Certified Purity Verification",
     image: hallImg,
     description:
-      "Secure official recognition for your gold jewelry. In partnership with the Bombay Assay Company (BAC), we offer Bureau of Indian Standards (BIS) hallmarking, applying laser-etched stamps of authenticity.",
+      "Secure official recognition for your gold jewelry.",
     highlights: [
       "Authorized BIS Assaying & Hallmarking",
       "Tamper-proof laser inscription stamp",
@@ -66,154 +70,342 @@ const services = [
   },
 ];
 
+// Gold particles
+const goldParticles = Array.from({ length: 15 }, (_, i) => ({
+  id: i,
+  left: `${5 + (i * 7.7) % 90}%`,
+  top: `${10 + (i * 9.3) % 80}%`,
+  size: (i % 3) + 2.5,
+  delay: i * 0.35,
+  duration: 5 + (i % 3) * 2,
+}));
+
 export default function ServicesCarousel() {
+
   const [activeId, setActiveId] = useState(1);
-  const current = services.find((s) => s.id === activeId);
+
+  const navigate = useNavigate();
+
+  const current = services.find(
+    (s) => s.id === activeId
+  );
+
   const autoplayRef = useRef(null);
 
-  // Auto-rotation (switches active tabs every 3 seconds)
+  // AUTOPLAY
   const startAutoplay = () => {
+
     stopAutoplay();
+
     autoplayRef.current = setInterval(() => {
-      setActiveId((prev) => (prev % services.length) + 1);
-    }, 3000);
+      setActiveId(
+        (prev) => (prev % services.length) + 1
+      );
+    }, 4500);
+
   };
 
+  // STOP AUTOPLAY
   const stopAutoplay = () => {
+
     if (autoplayRef.current) {
       clearInterval(autoplayRef.current);
     }
+
   };
 
+  // EFFECT
   useEffect(() => {
+
     startAutoplay();
+
     return () => stopAutoplay();
+
   }, [activeId]);
 
+  // (now navigate to dedicated page)
+
   return (
-    <section className="w-full py-24 px-6 bg-[#FAF3E0]/20 relative overflow-hidden border-t border-amber-200/40">
-      {/* Background radial gold glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-amber-200/10 rounded-full blur-[120px] pointer-events-none" />
+
+    <section className="w-full py-24 px-6 bg-[#FAF3E0]/15 relative overflow-hidden border-t border-amber-200/40">
+
+      {/* BACKGROUND */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(217,119,6,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(217,119,6,0.02)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none z-0" />
+
+      {/* GOLD PARTICLES */}
+      {goldParticles.map((p) => (
+
+        <motion.div
+          key={p.id}
+          className="absolute rounded-full bg-gradient-to-tr from-amber-400 to-amber-200 pointer-events-none z-0 opacity-20"
+          style={{
+            left: p.left,
+            top: p.top,
+            width: p.size,
+            height: p.size,
+          }}
+          animate={{
+            y: [-30, -120, -30],
+            opacity: [0.1, 0.5, 0.25, 0.1],
+          }}
+          transition={{
+            duration: p.duration,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: p.delay,
+          }}
+        />
+
+      ))}
 
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Section Header */}
+
+        {/* HEADER */}
         <div className="mb-16">
-          <span className="text-amber-600 text-sm font-bold tracking-widest uppercase block mb-2">PRECIOUS METAL SOLUTIONS</span>
-          <h2 className="text-3xl lg:text-5xl font-extrabold tracking-tight text-[#3A3225] uppercase">
+
+          <motion.span className="text-amber-600 text-sm font-bold tracking-widest uppercase block mb-2">
+
+            PRECIOUS METAL SOLUTIONS
+
+          </motion.span>
+
+          <motion.h2 className="text-3xl lg:text-5xl font-extrabold tracking-tight text-[#3A3225] uppercase">
+
             OUR <span className="text-amber-600">SERVICES</span>
-          </h2>
-          <div className="w-24 h-1 bg-amber-500 rounded-full mt-4" />
+
+          </motion.h2>
+
         </div>
 
-        {/* Dynamic Split Layout */}
-        <div 
+        <div
           className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-stretch"
           onMouseEnter={stopAutoplay}
           onMouseLeave={startAutoplay}
         >
-          {/* LEFT SIDE: Interactive Vertical Tabs Accordion */}
+
+          {/* LEFT SIDE */}
           <div className="lg:col-span-5 flex flex-col justify-start gap-4 lg:gap-6 min-h-[550px] lg:min-h-[600px]">
+
             {services.map((service) => {
-              const isActive = service.id === activeId;
+
+              const isActive =
+                service.id === activeId;
+
               return (
-                <div
+
+                <motion.div
                   key={service.id}
-                  onClick={() => setActiveId(service.id)}
-                  className={`group relative p-6 rounded-2xl cursor-pointer transition-all duration-300 border ${
+                  onClick={() =>
+                    setActiveId(service.id)
+                  }
+                  className={`group relative p-6 rounded-2xl cursor-pointer transition-all duration-300 border overflow-hidden ${
                     isActive
-                      ? "bg-[#FAF3E0]/70 border-amber-300 shadow-md translate-x-2"
+                      ? "bg-[#FAF3E0]/75 border-amber-300/80 shadow-[0_10px_25px_-5px_rgba(245,158,11,0.15)] backdrop-blur-md"
                       : "bg-[#FAF3E0]/20 border-transparent hover:bg-[#FAF3E0]/45"
                   }`}
                 >
-                  {/* Left Active border bar */}
-                  <div
-                    className={`absolute left-0 top-0 bottom-0 w-1.5 rounded-l-2xl bg-amber-500 transition-all duration-300 origin-bottom ${
-                      isActive ? "scale-y-100" : "scale-y-0"
-                    }`}
-                  />
 
-                  {/* Header Row */}
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-4 relative z-10">
+
                     <span
                       className={`text-xl font-bold tracking-widest font-mono transition-colors duration-300 ${
-                        isActive ? "text-amber-600" : "text-[#B38B3D]/50 group-hover:text-[#B38B3D]"
+                        isActive
+                          ? "text-amber-600"
+                          : "text-[#B38B3D]/50 group-hover:text-[#B38B3D]"
                       }`}
                     >
                       {service.num}
                     </span>
+
                     <h3
                       className={`text-lg lg:text-xl font-extrabold tracking-wide uppercase transition-colors duration-300 ${
-                        isActive ? "text-[#3A3225]" : "text-[#3A3225]/60 group-hover:text-[#3A3225]"
+                        isActive
+                          ? "text-[#3A3225]"
+                          : "text-[#3A3225]/60 group-hover:text-[#3A3225]"
                       }`}
                     >
                       {service.title}
                     </h3>
+
                   </div>
 
-                  {/* Collapsible content (Accordion style) */}
-                  <div
-                    className={`overflow-hidden transition-all duration-500 ${
-                      isActive ? "max-h-[160px] opacity-100 mt-3" : "max-h-0 opacity-0"
-                    }`}
-                  >
-                    <p className="text-[#B38B3D] text-xs font-semibold uppercase tracking-wider mb-2">
-                      {service.tagline}
-                    </p>
-                    <p className="text-[#4A3F2C] text-sm leading-relaxed">
-                      {service.description}
-                    </p>
-                  </div>
-                </div>
+                  {isActive && (
+
+                    <div className="mt-4">
+
+                      <p className="text-[#B38B3D] text-xs font-semibold uppercase tracking-wider mb-2">
+
+                        {service.tagline}
+
+                      </p>
+
+                      <p className="text-[#4A3F2C] text-sm leading-relaxed font-medium">
+
+                        {service.description}
+
+                      </p>
+
+                    </div>
+
+                  )}
+
+                </motion.div>
+
               );
+
             })}
+
           </div>
 
-          {/* RIGHT SIDE: Immersive Interactive Media Showcase */}
+          {/* RIGHT SIDE */}
           <div className="lg:col-span-7 flex flex-col justify-between">
-            <div className="h-[400px] lg:h-[480px] w-full rounded-3xl overflow-hidden relative shadow-2xl border border-amber-200/30">
-              {/* Fade transitions for background and overlay content */}
+
+            <div className="h-[420px] lg:h-[500px] w-full rounded-3xl overflow-hidden relative shadow-[0_20px_50px_rgba(217,119,6,0.15)] border border-amber-200/30">
+
               <AnimatePresence mode="wait">
+
                 <motion.div
                   key={current.id}
-                  initial={{ opacity: 0, scale: 0.98 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 1.02 }}
-                  transition={{ duration: 0.5, ease: "easeInOut" }}
-                  className="absolute inset-0 bg-cover bg-center"
-                  style={{ backgroundImage: `url(${current.image})` }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.55 }}
+                  className="absolute inset-0 overflow-hidden"
                 >
-                  {/* Luxury warm gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1F170E] via-black/40 to-transparent flex flex-col justify-end p-8 lg:p-12" />
 
-                  {/* Showcase contents */}
-                  <div className="absolute inset-x-0 bottom-0 p-8 lg:p-12 z-10 flex flex-col items-start gap-4">
-                    <span className="bg-amber-500/20 backdrop-blur-md border border-amber-500/40 text-amber-300 text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full">
+                  {/* IMAGE */}
+                  <motion.div
+                    initial={{ scale: 1.08 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 6 }}
+                    className="absolute inset-0 bg-cover bg-center"
+                    style={{
+                      backgroundImage:
+                        `url(${current.image})`,
+                    }}
+                  />
+
+                  {/* OVERLAY */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1A1208] via-black/35 to-transparent z-10" />
+
+                  {/* CONTENT */}
+                  <div className="absolute inset-x-0 bottom-0 p-8 lg:p-12 z-20 flex flex-col items-start gap-4">
+
+                    <motion.span className="bg-amber-500/25 backdrop-blur-md border border-amber-500/40 text-amber-300 text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full shadow-sm">
+
                       SJS Certified Gold Service
-                    </span>
-                    <h4 className="text-white text-2xl lg:text-3xl font-black uppercase tracking-wide">
+
+                    </motion.span>
+
+                    <motion.h4 className="text-white text-2xl lg:text-3xl font-black uppercase tracking-wide drop-shadow-md">
+
                       {current.title}
-                    </h4>
-                    
-                    {/* List of service value-propositions */}
-                    <ul className="flex flex-col gap-2 mt-2">
-                      {current.highlights.map((highlight, idx) => (
-                        <li key={idx} className="flex items-center gap-3 text-white/90 text-sm">
-                          <span className="text-amber-500 font-bold">&#10003;</span>
-                          <span>{highlight}</span>
-                        </li>
-                      ))}
+
+                    </motion.h4>
+
+                    <ul className="flex flex-col gap-2.5 mt-2">
+
+                      {current.highlights.map(
+                        (highlight, idx) => (
+
+                          <li
+                            key={idx}
+                            className="flex items-center gap-3 text-white/90 text-sm font-medium"
+                          >
+
+                            <span className="text-amber-400 font-bold text-base">
+
+                              ✓
+
+                            </span>
+
+                            <span>
+                              {highlight}
+                            </span>
+
+                          </li>
+
+                        )
+                      )}
+
                     </ul>
-                    {/* Enquiry CTA Button */}
-                    <button className="mt-4 px-6 py-2.5 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs lg:text-sm font-extrabold tracking-wider uppercase transition-all duration-300 shadow-md flex items-center gap-2">
-                      Read More <span>&rarr;</span>
-                    </button>
+
+                    {/* BUTTON */}
+
+                      <motion.button
+
+                        onClick={() => {
+                          const route = current.id === 1
+                            ? "/gold-bullion"
+                            : current.id === 2
+                            ? "/sjs-precious"
+                            : current.id === 3
+                            ? "/gold-testing"
+                            : current.id === 4
+                            ? "/hallmarking"
+                            : "/";
+                          navigate(route);
+                        }
+                        }
+
+                      initial={{
+                        opacity: 0,
+                        y: 15,
+                      }}
+
+                      animate={{
+                        opacity: 1,
+                        y: 0,
+                      }}
+
+                      transition={{
+                        delay: 0.55,
+                        type: "spring",
+                        stiffness: 100,
+                      }}
+
+                      whileHover={{
+                        scale: 1.05,
+                        boxShadow:
+                          "0 10px 25px -5px rgba(217, 119, 6, 0.45)",
+                      }}
+
+                      whileTap={{
+                        scale: 0.98,
+                      }}
+
+                      className="relative overflow-hidden mt-5 px-7 py-3 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-white rounded-xl text-xs lg:text-sm font-extrabold tracking-wider uppercase transition-all duration-300 shadow-md flex items-center gap-2 group/btn"
+                    >
+
+                      <span className="relative z-10 flex items-center gap-2">
+
+                        Read More
+
+                        <span className="group-hover/btn:translate-x-1.5 transition-transform duration-300">
+
+                          →
+
+                        </span>
+
+                      </span>
+
+                    </motion.button>
+
                   </div>
+
                 </motion.div>
+
               </AnimatePresence>
+
             </div>
+
           </div>
+
         </div>
+
       </div>
+
     </section>
+
   );
 }

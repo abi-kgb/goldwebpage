@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll } from "framer-motion";
-import { FaPhoneAlt, FaEnvelope, FaLinkedin, FaTwitter, FaMapMarkerAlt } from "react-icons/fa";
+import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaWhatsapp, FaGooglePlay, FaApple, FaCheckCircle, FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 import coin from "../assets/Gold Coin.jpeg";
 import sjsLogo from "../assets/logo.png";
@@ -9,6 +9,13 @@ import aboutBg from "../assets/SJSNOW1.jpg";
 
 import ServicesCarousel from "../components/ServicesCarousel";
 import TestimonialsCarousel from "../components/TestimonialsCarousel";
+
+// Gold Bullion section images
+import goldBarImg from "../assets/Gold Bar.jpeg";
+import appBannerImg from "../assets/sjspic1.png";
+import appScreensImg from "../assets/sjssm3.png";
+import googlePlayImg from "../assets/Website Google Play IMage.jpg";
+import appStoreImg from "../assets/Website Apple Store Image.jpg";
 
 // Partner logos
 import bhimaLogo from "../assets/Bhima.jpeg";
@@ -21,6 +28,7 @@ import regalLogo from "../assets/REGAL.jpeg";
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isGoldContentExpanded, setIsGoldContentExpanded] = useState(false);
   const { scrollY } = useScroll();
 
   useEffect(() => {
@@ -116,14 +124,14 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="milestone-card bg-[#FAF3E0]/75 backdrop-blur-md border border-amber-200/40 rounded-2xl p-8 shadow-sm cursor-pointer transition-all duration-300 flex flex-col gap-4"
+              className="milestone-card bg-gradient-to-b from-[#FAF6ED]/85 to-[#EFE2C6]/85 backdrop-blur-md border border-[#E9D5B5]/60 rounded-2xl p-8 shadow-md cursor-pointer transition-all duration-300 hover:border-amber-500/60 hover:-translate-y-1 hover:shadow-xl flex flex-col gap-4"
             >
               <div className="relative z-10 flex flex-col gap-4 h-full">
                 <div className="flex items-center gap-3">
-                  <span className="bg-amber-100 text-amber-800 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full border border-amber-200/40">1969</span>
+                  <span className="bg-amber-100/90 text-amber-900 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full border border-amber-300/40">1969</span>
                   <h3 className="text-lg font-bold text-[#3A3225]">The Foundation &amp; Heritage</h3>
                 </div>
-                <p className="text-[#4A3F2C] leading-relaxed text-sm lg:text-base">
+                <p className="text-[#4A3F2C] leading-relaxed text-sm lg:text-base font-medium">
                   What began in 1969 as a single jewelry shop in Kochi, Kerala—founded by Late Chairman Mr. Jaihind Mahadev Salunkhe—has evolved into a nationwide gold enterprise. Originally known as Shalimar Jewellers, the brand earned a reputation for trust, quality, and lasting customer relationships.
                 </p>
               </div>
@@ -135,14 +143,14 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.15, ease: "easeOut" }}
-              className="milestone-card bg-[#FAF3E0]/75 backdrop-blur-md border border-amber-200/40 rounded-2xl p-8 shadow-sm cursor-pointer transition-all duration-300 flex flex-col gap-4"
+              className="milestone-card bg-gradient-to-b from-[#FAF6ED]/85 to-[#EFE2C6]/85 backdrop-blur-md border border-[#E9D5B5]/60 rounded-2xl p-8 shadow-md cursor-pointer transition-all duration-300 hover:border-amber-500/60 hover:-translate-y-1 hover:shadow-xl flex flex-col gap-4"
             >
               <div className="relative z-10 flex flex-col gap-4 h-full">
                 <div className="flex items-center gap-3">
-                  <span className="bg-amber-100 text-amber-800 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full border border-amber-200/40">2007</span>
+                  <span className="bg-amber-100/90 text-amber-900 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full border border-amber-300/40">2007</span>
                   <h3 className="text-lg font-bold text-[#3A3225]">Leadership &amp; Evolution</h3>
                 </div>
-                <p className="text-[#4A3F2C] leading-relaxed text-sm lg:text-base">
+                <p className="text-[#4A3F2C] leading-relaxed text-sm lg:text-base font-medium">
                   In 2007, leadership transitioned to his son, Mr. Sunil Jaihind Salunkhe, who transformed the business into SJS Gold Private Limited. Under his guidance, the company significantly expanded its focus to include Bullion Sales and Refinery Operations.
                 </p>
               </div>
@@ -154,14 +162,14 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-              className="milestone-card bg-[#FAF3E0]/75 backdrop-blur-md border border-amber-200/40 rounded-2xl p-8 shadow-sm cursor-pointer transition-all duration-300 flex flex-col gap-4"
+              className="milestone-card bg-gradient-to-b from-[#FAF6ED]/85 to-[#EFE2C6]/85 backdrop-blur-md border border-[#E9D5B5]/60 rounded-2xl p-8 shadow-md cursor-pointer transition-all duration-300 hover:border-amber-500/60 hover:-translate-y-1 hover:shadow-xl flex flex-col gap-4"
             >
               <div className="relative z-10 flex flex-col gap-4 h-full">
                 <div className="flex items-center gap-3">
-                  <span className="bg-amber-100 text-amber-800 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full border border-amber-200/40">Operations</span>
+                  <span className="bg-amber-100/90 text-amber-900 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full border border-amber-300/40">Operations</span>
                   <h3 className="text-lg font-bold text-[#3A3225]">Strategic Restructuring</h3>
                 </div>
-                <p className="text-[#4A3F2C] leading-relaxed text-sm lg:text-base">
+                <p className="text-[#4A3F2C] leading-relaxed text-sm lg:text-base font-medium">
                   To support continued growth, the company later restructured—retaining bullion sales under the parent entity while establishing SJS Precious Metals LLP to manage all refinery and testing operations.
                 </p>
               </div>
@@ -173,74 +181,55 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.45, ease: "easeOut" }}
-              className="milestone-card bg-[#FAF3E0]/75 backdrop-blur-md border border-amber-200/40 rounded-2xl p-8 shadow-sm cursor-pointer transition-all duration-300 flex flex-col gap-4"
+              className="milestone-card bg-gradient-to-b from-[#FAF6ED]/85 to-[#EFE2C6]/85 backdrop-blur-md border border-[#E9D5B5]/60 rounded-2xl p-8 shadow-md cursor-pointer transition-all duration-300 hover:border-amber-500/60 hover:-translate-y-1 hover:shadow-xl flex flex-col gap-4"
             >
               <div className="relative z-10 flex flex-col gap-4 h-full">
                 <div className="flex items-center gap-3">
-                  <span className="bg-amber-100 text-amber-800 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full border border-amber-200/40">Partnership</span>
+                  <span className="bg-amber-100/90 text-amber-900 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full border border-amber-300/40">Partnership</span>
                   <h3 className="text-lg font-bold text-[#3A3225]">Quality &amp; Assurance</h3>
                 </div>
-                <p className="text-[#4A3F2C] leading-relaxed text-sm lg:text-base">
+                <p className="text-[#4A3F2C] leading-relaxed text-sm lg:text-base font-medium">
                   As part of its strategic investment portfolio, SJS Gold Private Limited partnered with the Bombay Assay Company (BAC), a BIS-recognized leader in gold hallmarking and quality testing in India.
                 </p>
               </div>
             </motion.div>
           </div>
-        </div>
-      </section>
 
-      {/* STRATEGIC VISION QUOTE */}
-      <section className="w-full relative overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${aboutBg})` }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-orange-600/95 via-orange-500/90 to-orange-600/95" />
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-16 flex flex-col md:flex-row items-center justify-between gap-8">
-          <div className="flex-1">
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-amber-100 text-xs font-bold uppercase tracking-widest mb-3"
-            >
-              Our Strategic Vision
-            </motion.p>
-            <motion.h2 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-3xl lg:text-4xl font-black text-white italic mb-4"
-            >
-              "Spread Our Wings"
-            </motion.h2>
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-white/90 text-base lg:text-lg leading-relaxed max-w-2xl"
-            >
-              We are embarking on a strategic expansion across various regions of India, extending our footprint while upholding our commitment to quality, trust, and excellence.
-            </motion.p>
-          </div>
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+          {/* STRATEGIC VISION CARD (INTEGRATED UNDERNEATH MILESTONES ON SAME GOLD-COIN BACKGROUND) */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="bg-amber-500/60 backdrop-blur-sm border border-white/20 rounded-2xl px-10 py-5 shadow-lg"
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            className="w-full max-w-5xl mt-16 bg-[#BC5200] backdrop-blur-sm border border-orange-500/20 rounded-3xl p-8 md:p-12 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden"
           >
-            <span className="text-white text-2xl lg:text-3xl font-black uppercase tracking-wider">SJS Gold</span>
+            {/* Ambient inner card glow */}
+            <div className="absolute top-0 right-0 w-[200px] h-[200px] rounded-full bg-white/5 blur-[50px] pointer-events-none" />
+
+            <div className="flex-1 z-10 text-left">
+              <span className="text-amber-300 text-xs font-black uppercase tracking-widest mb-3 block">
+                OUR STRATEGIC VISION
+              </span>
+              <h2 className="text-3xl lg:text-4xl font-serif font-black text-white italic mb-4 leading-tight">
+                "Spread Our Wings"
+              </h2>
+              <p className="text-white/95 text-sm lg:text-base leading-relaxed max-w-2xl font-medium">
+                We are embarking on a strategic expansion across various regions of India, extending our footprint while upholding our commitment to quality, trust, and excellence.
+              </p>
+            </div>
+            
+            <div className="bg-[#782D00]/50 hover:bg-[#782D00]/65 backdrop-blur-md border border-white/10 rounded-2xl px-10 py-5 shadow-xl flex-shrink-0 z-10 transition-all duration-300 cursor-pointer">
+              <span className="text-[#F59E0B] text-2xl lg:text-3xl font-black uppercase tracking-wider">SJS GOLD</span>
+            </div>
           </motion.div>
+
         </div>
       </section>
 
       {/* SERVICES SECTION */}
       <ServicesCarousel />
+
+   
 
       {/* TRUSTED BY SECTION */}
       <section className="w-full bg-[#FAF3E0]/45 py-16 overflow-hidden border-y border-amber-200/20 relative">

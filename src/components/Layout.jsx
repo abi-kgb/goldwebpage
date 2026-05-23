@@ -6,7 +6,9 @@ import {
   FaEnvelope,
   FaLinkedin,
   FaTwitter,
-  FaMapMarkerAlt
+  FaMapMarkerAlt,
+  FaBars,
+  FaTimes
 } from "react-icons/fa";
 
 import sjsLogo from "../assets/logo.png";
@@ -16,9 +18,24 @@ import playStoreImg from "../assets/Website Google Play IMage.jpg";
 
 export default function Layout() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { scrollY } = useScroll();
   const navigate = useNavigate();
   const { pathname } = useLocation();
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
+
+  // Helper to generate link classes with active state styling
+  const navLinkClass = (path) => {
+  const base = "relative py-1 hover:text-amber-700 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-amber-600 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left";
+  const active = "text-amber-900 after:scale-x-100";
+  // Determine active if pathname starts with the target path (handles sub-routes) and ensure exact match for root
+  const isActive = path === "/" ? pathname === "/" : pathname.startsWith(path);
+  return isActive ? `${base} ${active}` : base;
+};
 
   // Track scroll position to trigger the logo transition
   useEffect(() => {
@@ -56,9 +73,9 @@ export default function Layout() {
         style={{ pointerEvents: showStickyHeader ? "auto" : "none" }}
       >
         {/* MAIN NAVBAR */}
-        <nav className="bg-[#FAF3E0]/85 backdrop-blur-md border-t border-amber-200/40 p-3 flex items-center px-6 shadow-sm">
+        <nav className="bg-[#FAF3E0]/85 backdrop-blur-md border-t border-amber-200/40 p-3 flex justify-between items-center px-4 md:px-6 shadow-sm">
           {/* LOGO SLOT (Top Left) */}
-          <div className="w-48 lg:w-64 h-12 flex-shrink-0 flex items-center justify-start">
+          <div className="w-48 sm:w-56 md:w-64 lg:w-80 xl:w-96 h-14 md:h-16 lg:h-20 xl:h-24 flex-shrink-0 flex items-center justify-start">
             {showStickyHeader && (
               <motion.img
                 layoutId="company-logo"
@@ -69,18 +86,18 @@ export default function Layout() {
             )}
           </div>
 
-          {/* NAVIGATION LINKS */}
-          <div className="flex-1 flex flex-wrap justify-end items-center gap-8 text-md font-semibold text-[#4A3F2C]">
-            <Link to="/" className="relative py-1 hover:text-amber-700 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-amber-600 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left">Home</Link>
-            <Link to="/about" className="relative py-1 hover:text-amber-700 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-amber-600 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left">About Us</Link>
-            <Link to="/team" className="relative py-1 hover:text-amber-700 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-amber-600 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left">Our Team</Link>
-            <Link to="/csr" className="relative py-1 hover:text-amber-700 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-amber-600 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left">CSR</Link>
-            <Link to="/foundation" className="relative py-1 hover:text-amber-700 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-amber-600 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left">SJS Foundation</Link>
-            <Link to="/join" className="relative py-1 hover:text-amber-700 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-amber-600 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left">Join Our Team</Link>
-            <Link to="/contact" className="relative py-1 hover:text-amber-700 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-amber-600 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left">Contact Us</Link>
+          {/* DESKTOP NAVIGATION LINKS */}
+          <div className="hidden xl:flex flex-1 justify-end items-center gap-6 xl:gap-8 text-md font-semibold text-[#4A3F2C]">
+            <Link to="/" className={navLinkClass("/")}>Home</Link>
+            <Link to="/about" className={navLinkClass("/about")}>About Us</Link>
+            <Link to="/team" className={navLinkClass("/team")}>Our Team</Link>
+            <Link to="/csr" className={navLinkClass("/csr")}>CSR</Link>
+            <Link to="/foundation" className={navLinkClass("/foundation")}>SJS Foundation</Link>
+            <Link to="/join" className={navLinkClass("/join")}>Join Our Team</Link>
+            <Link to="/contact" className={navLinkClass("/contact")}>Contact Us</Link>
             
             {/* HIGHLIGHTED LIVE RATE BUTTON */}
-            <a href="#" className="bg-gradient-to-r from-amber-500 to-amber-600 text-amber-950 font-black px-5 py-2 rounded-full shadow-[0_0_15px_rgba(245,158,11,0.5)] hover:shadow-[0_0_25px_rgba(245,158,11,0.8)] hover:scale-105 transition-all duration-300 flex items-center gap-2 uppercase tracking-wide">
+            <a href="https://www.sjsgold.in/" target="_blank" rel="noopener noreferrer" className="bg-gradient-to-r from-amber-500 to-amber-600 text-amber-950 font-black px-5 py-2 rounded-full shadow-[0_0_15px_rgba(245,158,11,0.5)] hover:shadow-[0_0_25px_rgba(245,158,11,0.8)] hover:scale-105 transition-all duration-300 flex items-center gap-2 uppercase tracking-wide">
               <span className="relative flex h-2.5 w-2.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-100 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-white"></span>
@@ -88,31 +105,69 @@ export default function Layout() {
               Live Rate
             </a>
           </div>
+
+          {/* MOBILE MENU TOGGLE BUTTON */}
+          <button 
+            className="xl:hidden text-2xl text-[#4A3F2C] focus:outline-none ml-auto"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
+          </button>
         </nav>
 
-        {/* TOP CONTACT BAR */}
-        <div className="bg-[#FAF3E0]/85 backdrop-blur-md px-6 py-2 flex justify-end items-center text-sm text-amber-800 font-semibold border-b border-amber-200/40">
-          <div className="flex flex-wrap items-center gap-5">
-            <div className="flex items-center gap-2"><FaPhoneAlt className="text-amber-600" /><p>+91 99616 40004</p></div>
-            <div className="flex items-center gap-2"><FaEnvelope className="text-amber-600" /><p>admin@sjsgold.com</p></div>
+        {/* MOBILE MENU DROPDOWN */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              className="xl:hidden bg-[#FAF3E0] border-b border-amber-200 shadow-lg overflow-hidden flex flex-col"
+            >
+              <div className="flex flex-col px-6 py-4 gap-4 text-lg font-semibold text-[#4A3F2C]">
+                <Link to="/" className="hover:text-amber-700">Home</Link>
+                <Link to="/about" className="hover:text-amber-700">About Us</Link>
+                <Link to="/team" className="hover:text-amber-700">Our Team</Link>
+                <Link to="/csr" className="hover:text-amber-700">CSR</Link>
+                <Link to="/foundation" className="hover:text-amber-700">SJS Foundation</Link>
+                <Link to="/join" className="hover:text-amber-700">Join Our Team</Link>
+                <Link to="/contact" className="hover:text-amber-700">Contact Us</Link>
+                
+                <a href="https://www.sjsgold.in/" target="_blank" rel="noopener noreferrer" className="bg-amber-500 text-amber-950 font-black px-5 py-3 rounded-xl text-center uppercase tracking-wide mt-2 shadow-md">
+                  Live Rate
+                </a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* TOP CONTACT BAR (BELOW NAVBAR) */}
+        <div className="bg-[#FAF3E0]/85 backdrop-blur-md px-4 py-2.5 flex justify-center md:justify-end items-center text-[11px] sm:text-xs md:text-sm text-amber-800 font-semibold border-b border-amber-200/40 w-full overflow-x-auto no-scrollbar">
+          <div className="flex items-center gap-4 sm:gap-6 w-max">
+            <div className="flex items-center gap-1.5"><FaPhoneAlt className="text-amber-600" /><p>+91 99616 40004</p></div>
+            <div className="flex items-center gap-1.5"><FaEnvelope className="text-amber-600" /><p>admin@sjsgold.com</p></div>
             
-            <div className="flex items-center gap-3 ml-2">
-              <a href="#" className="hover:scale-105 transition-transform duration-300">
-                <img src={playStoreImg} alt="Get it on Google Play" className="h-8 w-auto rounded object-contain" />
+            <div className="flex items-center gap-2">
+              <a href="https://play.google.com/store/apps/details?id=com.sjsgoldprivatelimited" target="_blank" rel="noopener noreferrer" className="hover:scale-105 transition-transform duration-300">
+                <img src={playStoreImg} alt="Get it on Google Play" className="h-6 md:h-8 w-auto rounded object-contain" />
               </a>
-              <a href="#" className="hover:scale-105 transition-transform duration-300">
-                <img src={appleStoreImg} alt="Download on the App Store" className="h-8 w-auto rounded object-contain" />
+              <a href="https://apps.apple.com/us/app/sjs-gold/id6744094691" target="_blank" rel="noopener noreferrer" className="hover:scale-105 transition-transform duration-300">
+                <img src={appleStoreImg} alt="Download on the App Store" className="h-6 md:h-8 w-auto rounded object-contain" />
               </a>
             </div>
             
-            <FaLinkedin className="text-xl cursor-pointer hover:text-amber-950 transition-all" />
-            <FaTwitter className="text-xl cursor-pointer hover:text-amber-950 transition-all" />
+            <div className="flex items-center gap-3">
+              <a href="https://www.linkedin.com/company/sjs-gold-pvt-ltd/" target="_blank" rel="noopener noreferrer" className="text-lg md:text-xl cursor-pointer hover:text-amber-950 transition-all">
+                <FaLinkedin />
+              </a>
+              <FaTwitter className="text-lg md:text-xl cursor-pointer hover:text-amber-950 transition-all" />
+            </div>
           </div>
         </div>
       </motion.div>
 
       {/* MAIN VIEW CONTENT */}
-      <main className="flex-grow">
+      <main className="flex-grow pt-24">
         <Outlet />
       </main>
 
@@ -297,11 +352,12 @@ export default function Layout() {
             </div>
 
           </div>
-          
+
           <div className="mt-16 pt-8 border-t border-gray-800 text-center flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-xs text-gray-500 uppercase tracking-widest">© 2026 SJS Gold. All rights reserved.</p>
             <p className="text-xs text-gray-500 uppercase tracking-widest">Engineered with Precision &amp; Trust.</p>
           </div>
+
         </div>
       </footer>
 
