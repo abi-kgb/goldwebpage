@@ -47,7 +47,7 @@ export default function Foundation() {
   ];
 
   return (
-    <div className="relative pt-24 pb-0 bg-[#FAF6EE] text-[#3A3225] overflow-hidden min-h-screen">
+    <div className="relative pb-0 bg-[#FAF6EE] text-[#3A3225] overflow-hidden min-h-screen">
       {/* 1. HERO HEADER SECTION */}
       <section className="relative w-full h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden">
         {/* Background Image Layer */}
@@ -104,9 +104,18 @@ export default function Foundation() {
           viewport={{ once: true }}
           variants={fadeInUp}
         >
-          <p className="text-xl lg:text-2xl text-[#5A4F3D] leading-relaxed font-serif italic">
-            "SJS Foundations is more than a charitable trust—it is a living legacy of the compassion, integrity, and vision of our beloved Chairman, Late Mr. Jaihind Mahadev Salunkhe. Built on his lifelong belief in uplifting the underserved and creating equal opportunities for all, SJS Foundations continues to carry forward the values he championed: humanity, dignity, and hope."
-          </p>
+          <div className="relative mx-auto max-w-4xl my-4 p-8">
+            <div className="absolute inset-0 border-2 border-amber-400 rounded-[2rem] pointer-events-none opacity-50"></div>
+            <div className="absolute -top-6 left-12 bg-[#FAF6EE] px-4 text-7xl text-amber-500 font-serif leading-none">
+              “
+            </div>
+            <div className="absolute -bottom-10 right-12 bg-[#FAF6EE] px-4 text-7xl text-amber-500 font-serif leading-none">
+              ”
+            </div>
+            <p className="text-xl lg:text-2xl text-[#5A4F3D] leading-relaxed font-serif italic text-center px-4 relative z-10">
+              SJS Foundations is more than a charitable trust—it is a living legacy of the compassion, integrity, and vision of our beloved Chairman, Late Mr. Jaihind Mahadev Salunkhe. Built on his lifelong belief in uplifting the underserved and creating equal opportunities for all, SJS Foundations continues to carry forward the values he championed: humanity, dignity, and hope.
+            </p>
+          </div>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-16">
@@ -141,8 +150,18 @@ export default function Foundation() {
             <p className="text-[#5A4F3D] text-sm leading-relaxed mb-6 font-medium flex-grow">
               Late Mr. Salunkhe believed that true success is measured not by wealth, but by the positive impact one creates in the lives of others. Guided by this principle, he founded SJS Foundations to support individuals and communities in need.
             </p>
-            <div className="bg-amber-50 border border-amber-200/50 rounded-xl p-4 italic text-center text-sm text-amber-800 shadow-inner">
-              “No one should be left behind. Everyone deserves a chance to live with dignity.”
+            <div className="relative bg-white rounded-3xl p-6 shadow-md border border-amber-100 mx-auto mt-10 mb-4">
+              <div className="absolute -bottom-4 left-10 w-0 h-0 border-l-[15px] border-l-transparent border-t-[20px] border-t-white border-r-[10px] border-r-transparent drop-shadow-md z-10"></div>
+              
+              <div className="absolute -top-5 -left-5 bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-sm border border-amber-50">
+                <span className="text-4xl text-amber-500 font-serif leading-none mt-3 mr-1">“</span>
+              </div>
+              <div className="absolute -bottom-5 -right-5 bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-sm border border-amber-50">
+                <span className="text-4xl text-amber-500 font-serif leading-none mt-3 mr-1">”</span>
+              </div>
+              <p className="text-sm text-[#5A4F3D] font-serif italic text-center relative z-10 leading-relaxed px-2">
+                No one should be left behind. Everyone deserves a chance to live with dignity.
+              </p>
             </div>
           </motion.div>
 
@@ -212,7 +231,7 @@ export default function Foundation() {
           </div>
 
           <motion.div 
-            className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16 justify-center mt-12"
+            className="relative flex flex-wrap justify-center gap-x-8 gap-y-16 mt-12"
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
@@ -225,7 +244,7 @@ export default function Foundation() {
               <motion.div
                 key={idx}
                 variants={fadeInUp}
-                className="relative bg-white/5 backdrop-blur-md rounded-3xl p-8 pt-16 shadow-lg border border-amber-500/20 hover:border-amber-400/60 hover:-translate-y-2 transition-all duration-300 text-center flex flex-col items-center group z-10"
+                className="relative w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] bg-white/5 backdrop-blur-md rounded-3xl p-8 pt-16 shadow-lg border border-amber-500/20 hover:border-amber-400/60 hover:-translate-y-2 transition-all duration-300 text-center flex flex-col items-center group z-10"
               >
                 {/* Overlapping Badge */}
                 <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-20 h-20 rounded-full bg-[#1A1610] border-4 border-[#0A0806] ring-1 ring-amber-500/40 text-amber-500 text-3xl flex items-center justify-center shadow-[0_0_15px_rgba(245,158,11,0.2)] group-hover:scale-110 group-hover:rotate-6 group-hover:bg-amber-500 group-hover:text-white transition-all duration-500">
@@ -241,9 +260,12 @@ export default function Foundation() {
             ))}
           </motion.div>
 
-          <div className="mt-20 text-center max-w-3xl mx-auto bg-[#1A1610]/60 backdrop-blur-md p-8 rounded-3xl border border-amber-500/20 shadow-xl">
-            <p className="text-lg md:text-xl text-amber-200 font-serif italic">
-              "Every initiative is guided by compassion, transparency, and a deep sense of responsibility—values instilled by Late Mr. Salunkhe himself."
+          <div className="relative mt-20 max-w-3xl mx-auto bg-[#1A1610]/80 backdrop-blur-md rounded-3xl p-10 border border-amber-500/30 shadow-2xl overflow-hidden">
+            <div className="absolute -right-4 -top-8 text-[12rem] font-serif text-amber-500/10 leading-none select-none pointer-events-none">
+              ”
+            </div>
+            <p className="text-xl md:text-2xl text-amber-200 font-serif italic text-center relative z-10 font-light leading-relaxed">
+              Every initiative is guided by compassion, transparency, and a deep sense of responsibility—values instilled by Late Mr. Salunkhe himself.
             </p>
           </div>
         </div>
@@ -310,13 +332,18 @@ export default function Foundation() {
             </div>
           </motion.div>
           
-          <motion.p 
-            className="text-xl md:text-2xl lg:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-200 font-serif leading-relaxed px-4 md:px-12"
+          <motion.div 
+            className="relative bg-gradient-to-r from-[#1A1610]/90 to-[#0A0806]/90 backdrop-blur-md rounded-r-[3rem] rounded-l-full shadow-2xl mx-auto max-w-5xl mt-6 pl-28 md:pl-40 pr-8 py-10 border border-amber-500/20 flex items-center min-h-[160px]"
             variants={fadeInUp}
-            style={{ textShadow: "0 4px 20px rgba(245,158,11,0.1)" }}
           >
-            "SJS Foundations honours the legacy of Late Mr. Salunkhe by continuing to uplift communities through compassionate service and sustainable initiatives. Guided today by Mr. Sunil Jaihind Salunkhe, the trust remains committed to creating positive change and carrying its mission of hope forward."
-          </motion.p>
+            <div className="absolute left-0 top-0 bottom-0 w-24 md:w-32 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(245,158,11,0.3)] border-4 border-[#0A0806]">
+              <span className="text-7xl md:text-8xl text-[#1A1610] font-serif leading-none mt-6 md:mt-8">“</span>
+            </div>
+            
+            <p className="text-lg md:text-xl lg:text-2xl text-amber-100 font-serif italic leading-relaxed text-left" style={{ textShadow: "0 4px 20px rgba(245,158,11,0.1)" }}>
+              SJS Foundations honours the legacy of Late Mr. Salunkhe by continuing to uplift communities through compassionate service and sustainable initiatives. Guided today by Mr. Sunil Jaihind Salunkhe, the trust remains committed to creating positive change and carrying its mission of hope forward.
+            </p>
+          </motion.div>
           
           <motion.div variants={fadeInUp} className="pt-6 flex justify-center">
              <div className="h-[2px] w-32 bg-gradient-to-r from-transparent via-amber-500 to-transparent"></div>

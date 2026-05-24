@@ -118,23 +118,35 @@
   a {
     color: var(--text-h);
     font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
   }
+
+  /* Read-more pages and CTA enhancements */
+  .read-more-transition {
+    transition: max-height 0.45s cubic-bezier(.2,.9,.2,1), opacity 0.35s ease;
+    overflow: hidden;
+  }
+
+  .go-back-cta {
+    background: linear-gradient(90deg, #d97706, #f59e0b);
+    box-shadow: 0 12px 30px rgba(217,119,6,0.18);
+  }
+
+  .go-back-cta:active {
+    transform: translateY(1px);
+  }
+
+  .page-cta-glow::after {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    background: radial-gradient(closest-side, rgba(245,158,11,0.08), transparent);
+    border-radius: inherit;
+    z-index: -1;
+  }
+
+  /* utility for subtle fade-in used by motion components */
+  .fade-in-onload { opacity: 0; transform: translateY(6px); transition: opacity .6s ease, transform .6s ease; }
+  .fade-in-onload.visible { opacity: 1; transform: translateY(0); }
 
   @media (max-width: 1024px) {
     margin-top: 20px;
@@ -387,4 +399,28 @@
     radial-gradient(at 100% 0%, rgba(251, 191, 36, 0.06) 0px, transparent 50%),
     radial-gradient(at 0% 100%, rgba(217, 119, 6, 0.06) 0px, transparent 50%);
 }
+
+/* Page-level decorative background used by read-more pages */
+.page-background {
+  background: linear-gradient(180deg, rgba(255, 247, 237, 0.6), rgba(255,250,245,0.15));
+}
+
+.page-background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 10% 20%, rgba(245,158,11,0.02), transparent 10%),
+                    radial-gradient(circle at 90% 80%, rgba(217,119,6,0.02), transparent 12%);
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  animation: float 14s ease-in-out infinite;
+}
+
+/* Slight inner glow for page container */
+.page-motion-root > .max-w-4xl {
+  position: relative;
+}
+
+/* Make staggered child wrappers not introduce extra margin collapse */
+.page-motion-root > .max-w-4xl > div { display: block; }
 

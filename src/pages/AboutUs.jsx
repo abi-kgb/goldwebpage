@@ -111,7 +111,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function AboutUs() {
   return (
-    <div className="relative pt-24 overflow-hidden bg-[#FAF6EE] text-[#3A3225]">
+    <div className="relative overflow-hidden bg-[#FAF6EE] text-[#3A3225]">
       
       {/* 1. HERO HEADER SECTION */}
       <section className="relative w-full h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
@@ -233,11 +233,19 @@ export default function AboutUs() {
                 </p>
                 
                 <motion.div 
-                  className="border-l-4 border-amber-500 pl-6 italic bg-amber-50/50 backdrop-blur-sm py-4 pr-4 rounded-r-2xl shadow-sm my-8 border border-amber-200/30"
-                  whileHover={{ x: 5 }}
-                  transition={{ duration: 0.2 }}
+                  className="relative bg-white rounded-3xl p-6 shadow-md border border-amber-100 my-10"
+                  whileHover={{ y: -4, shadow: "0 10px 25px rgba(217,119,6,0.15)" }}
+                  transition={{ duration: 0.3 }}
                 >
-                  <p className="text-amber-955 font-semibold">
+                  <div className="absolute -bottom-4 left-10 w-0 h-0 border-l-[15px] border-l-transparent border-t-[20px] border-t-white border-r-[10px] border-r-transparent drop-shadow-md z-10"></div>
+                  
+                  <div className="absolute -top-5 -left-5 bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-sm border border-amber-50">
+                    <span className="text-4xl text-amber-500 font-serif leading-none mt-3 mr-1">“</span>
+                  </div>
+                  <div className="absolute -bottom-5 -right-5 bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-sm border border-amber-50">
+                    <span className="text-4xl text-amber-500 font-serif leading-none mt-3 mr-1">”</span>
+                  </div>
+                  <p className="text-amber-955 font-semibold italic text-center relative z-10">
                     The Board of Directors and the entire leadership team are committed to honouring Mr. Jaihind's legacy by upholding the core values he established: Integrity, Innovation, and Service. We will continue to pursue the ambitious vision he set forth, ensuring that SJS Gold Private Limited remains a testament to his life's work.
                   </p>
                 </motion.div>
@@ -611,11 +619,14 @@ export default function AboutUs() {
                 </p>
                 
                 <motion.div 
-                  className="border-l-4 border-amber-500 pl-6 italic bg-amber-50/50 backdrop-blur-sm py-4 pr-4 rounded-r-2xl shadow-sm border border-amber-200/30 font-serif"
-                  whileHover={{ x: 5 }}
-                  transition={{ duration: 0.2 }}
+                  className="relative bg-white/60 backdrop-blur-sm border border-amber-200/50 rounded-2xl p-6 shadow-sm my-8 overflow-hidden"
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
                 >
-                  <p className="text-amber-955 font-semibold leading-relaxed">
+                  <div className="absolute -right-4 -top-8 text-[10rem] font-serif text-amber-500/10 leading-none select-none pointer-events-none">
+                    ”
+                  </div>
+                  <p className="text-amber-955 font-semibold italic leading-relaxed relative z-10">
                     Her leadership reflects a remarkable blend of compassion and professionalism, making her a highly respected figure in the business she leads.
                   </p>
                 </motion.div>

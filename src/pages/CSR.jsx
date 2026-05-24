@@ -74,7 +74,7 @@ export default function CSR() {
   ];
 
   return (
-    <div className="relative pt-24 pb-32 bg-[#FAF6EE] text-[#3A3225] overflow-hidden min-h-screen">
+    <div className="relative pb-32 bg-[#FAF6EE] text-[#3A3225] overflow-hidden min-h-screen">
       {/* 1. HERO HEADER SECTION */}
       <section className="relative w-full h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
         {/* Background Image Layer */}
@@ -295,10 +295,19 @@ export default function CSR() {
             A Promise Beyond Profit
           </motion.h2>
           
-          <motion.div variants={fadeInUp} className="py-2">
-            <p className="text-xl md:text-3xl text-[#5A4F3D] font-serif italic leading-relaxed px-4 md:px-12">
-              "True wealth is not measured by the gold we refine, but by the lives we touch and the legacy of trust we leave behind."
-            </p>
+          <motion.div variants={fadeInUp} className="py-8 w-full max-w-4xl mx-auto">
+            <div className="relative mx-auto w-full p-8 md:p-12">
+              <div className="absolute inset-0 border-2 border-amber-400 rounded-[2rem] pointer-events-none opacity-50"></div>
+              <div className="absolute -top-6 left-12 bg-white px-4 text-7xl text-amber-500 font-serif leading-none">
+                “
+              </div>
+              <div className="absolute -bottom-10 right-12 bg-white px-4 text-7xl text-amber-500 font-serif leading-none">
+                ”
+              </div>
+              <p className="text-xl md:text-3xl text-[#5A4F3D] font-serif italic leading-relaxed text-center px-4 md:px-12 relative z-10">
+                True wealth is not measured by the gold we refine, but by the lives we touch and the legacy of trust we leave behind.
+              </p>
+            </div>
           </motion.div>
           
           <motion.div variants={fadeInUp} className="pt-6 flex justify-center">

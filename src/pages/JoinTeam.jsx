@@ -48,7 +48,7 @@ export default function JoinTeam() {
   ];
 
   return (
-    <div className="relative pt-24 pb-0 bg-[#FAF6EE] text-[#3A3225] overflow-hidden min-h-screen">
+    <div className="relative pb-0 bg-[#FAF6EE] text-[#3A3225] overflow-hidden min-h-screen">
       {/* Soft elegant ambient background gold glows */}
       <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] rounded-full bg-amber-400/5 blur-[120px] pointer-events-none z-0"></div>
       <div className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] rounded-full bg-amber-500/5 blur-[120px] pointer-events-none z-0"></div>
