@@ -177,8 +177,9 @@ export default function ServicesCarousel() {
 
         </div>
 
+        {/* Desktop: keep original split layout */}
         <div
-          className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-stretch"
+          className="hidden lg:grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-stretch"
           onMouseEnter={stopAutoplay}
           onMouseLeave={startAutoplay}
         >
@@ -401,6 +402,62 @@ export default function ServicesCarousel() {
 
           </div>
 
+        </div>
+
+        {/* Mobile: stacked heading then image per service (visible only on small screens) */}
+        <div className="block lg:hidden flex flex-col gap-8">
+          {services.map((service) => (
+            <div key={service.id} className="w-full">
+              <div
+                className="p-4 rounded-2xl bg-[#FAF3E0]/30 border border-amber-200/20 mb-4"
+              >
+                <div className="flex items-center justify-between gap-4">
+                  <div className="flex items-center gap-3">
+                    <span className="text-lg font-mono font-bold text-amber-600">{service.num}</span>
+                    <h3 className="text-lg font-extrabold text-[#3A3225] uppercase">{service.title}</h3>
+                  </div>
+                </div>
+                <p className="text-[#4A3F2C] text-sm mt-3">{service.tagline}</p>
+              </div>
+
+              <div className="w-full rounded-2xl overflow-hidden relative shadow-[0_12px_30px_rgba(217,119,6,0.12)]">
+                <div
+                  className="w-full h-56 bg-cover bg-center"
+                  style={{ backgroundImage: `url(${service.image})` }}
+                />
+                <div className="p-4 bg-gradient-to-t from-black/50 to-transparent text-white">
+                  <h4 className="text-xl font-black uppercase">{service.title}</h4>
+                  <ul className="mt-2 flex flex-col gap-1 text-sm">
+                    {service.highlights.map((h, i) => (
+                      <li key={i} className="flex items-center gap-2">
+                        <span className="text-amber-400">✓</span>
+                        <span className="text-white/90">{h}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-3">
+                    <button
+                      onClick={() => {
+                        const route = service.id === 1
+                          ? "/gold-bullion"
+                          : service.id === 2
+                          ? "/sjs-precious"
+                          : service.id === 3
+                          ? "/gold-testing"
+                          : service.id === 4
+                          ? "/hallmarking"
+                          : "/";
+                        navigate(route);
+                      }}
+                      className="mt-2 inline-block px-4 py-2 bg-amber-600 rounded-md text-xs font-extrabold uppercase"
+                    >
+                      Read More
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
 
       </div>
