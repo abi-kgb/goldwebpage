@@ -51,7 +51,7 @@ export default function Home() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] lg:w-[500px] lg:h-[500px] rounded-full bg-amber-300/30 blur-[100px] pointer-events-none z-0"></div>
 
         {/* LARGE CENTER COIN */}
-        <div className="flex flex-col items-center justify-center z-10 w-[280px] h-[280px] lg:w-[380px] lg:h-[380px]">
+        <div className="flex flex-col items-center justify-center z-10 w-[280px] h-[280px] lg:w-[380px] lg:h-[380px] lg:-mt-44">
           {!isScrolled && (
             <motion.div
               initial={{ rotateY: 360, scale: 0.5, opacity: 0 }}
@@ -76,7 +76,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 1 }}
             src={sjsLogo}
-            className="h-20 lg:h-28 mt-12 object-contain z-10 brightness-[0.85] contrast-[1.05]"
+            className="h-20 lg:h-28 mt-12 lg:-mt-8 object-contain z-10 brightness-[0.85] contrast-[1.05]"
             alt="SJS Logo"
           />
         )}

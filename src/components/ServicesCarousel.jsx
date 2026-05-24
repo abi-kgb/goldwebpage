@@ -169,7 +169,7 @@ export default function ServicesCarousel() {
 
           </motion.span>
 
-          <motion.h2 className="text-3xl lg:text-5xl font-extrabold tracking-tight text-[#3A3225] uppercase">
+          <motion.h2 className="text-3xl lg:text-5xl font-extrabold tracking-tight text-black lg:text-[#3A3225] uppercase">
 
             OUR <span className="text-amber-600">SERVICES</span>
 
@@ -414,10 +414,10 @@ export default function ServicesCarousel() {
                 <div className="flex items-center justify-between gap-4">
                   <div className="flex items-center gap-3">
                     <span className="text-lg font-mono font-bold text-amber-600">{service.num}</span>
-                    <h3 className="text-lg font-extrabold text-[#3A3225] uppercase">{service.title}</h3>
+                    <h3 className="text-lg font-extrabold text-black uppercase">{service.title}</h3>
                   </div>
                 </div>
-                <p className="text-[#4A3F2C] text-sm mt-3">{service.tagline}</p>
+                <p className="text-black text-sm mt-3">{service.tagline}</p>
               </div>
 
               <div className="w-full rounded-2xl overflow-hidden relative shadow-[0_12px_30px_rgba(217,119,6,0.12)]">
@@ -425,13 +425,13 @@ export default function ServicesCarousel() {
                   className="w-full h-56 bg-cover bg-center"
                   style={{ backgroundImage: `url(${service.image})` }}
                 />
-                <div className="p-4 bg-gradient-to-t from-black/50 to-transparent text-white">
-                  <h4 className="text-xl font-black uppercase">{service.title}</h4>
+                <div className="p-4 bg-gradient-to-t from-white/30 to-transparent text-black">
+                  <h4 className="text-xl font-black uppercase text-black">{service.title}</h4>
                   <ul className="mt-2 flex flex-col gap-1 text-sm">
                     {service.highlights.map((h, i) => (
                       <li key={i} className="flex items-center gap-2">
                         <span className="text-amber-400">✓</span>
-                        <span className="text-white/90">{h}</span>
+                        <span className="text-black/90">{h}</span>
                       </li>
                     ))}
                   </ul>
